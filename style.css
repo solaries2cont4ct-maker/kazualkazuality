@@ -1,0 +1,57 @@
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff;color:#111;font-family:"Times New Roman",Times,serif;font-size:16px;line-height:1.25}
+a{color:inherit;text-decoration:none}
+a:hover{text-decoration:underline}
+
+.site-header{position:sticky;top:0;z-index:20;width:100%;padding:18px 24px;display:flex;justify-content:space-between;align-items:baseline;background:rgba(255,255,255,.96)}
+.artist-name{font-size:16px}
+nav{display:flex;gap:20px;font-size:15px}
+
+.works{
+  width:min(1240px,calc(100% - 48px));
+  margin:110px auto 220px;
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  column-gap:42px;
+  row-gap:150px;
+  align-items:start;
+}
+.work{margin:0}
+.work img{display:block;width:100%;height:auto;max-height:82vh;object-fit:contain}
+.work figcaption{margin-top:10px;font-size:14px}
+
+.work-large{grid-column:1 / 8}
+.work-small{grid-column:10 / 13;margin-top:110px}
+.work-wide{grid-column:3 / 11}
+.work-medium{grid-column:1 / 6;margin-top:20px}
+.work-offset{grid-column:8 / 11;margin-top:170px}
+.work-large-right{grid-column:5 / 13}
+
+.section{
+  width:min(1240px,calc(100% - 48px));
+  margin:0 auto 220px;
+  border-top:1px solid #111;
+  padding-top:18px;
+}
+.section h2{font-size:16px;font-weight:normal;margin:0 0 55px}
+.books{display:grid;grid-template-columns:repeat(4,1fr);gap:35px}
+.book-card img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;background:#eee}
+.book-card div{margin-top:10px;font-size:14px}
+
+.about{display:grid;grid-template-columns:1fr 1fr}
+.about p{margin:0 0 20px}
+
+footer{width:min(1240px,calc(100% - 48px));margin:auto;padding:20px 0 30px;border-top:1px solid #111;font-size:13px}
+
+@media(max-width:800px){
+  .site-header{padding:15px}
+  nav{gap:12px}
+  .works{width:calc(100% - 30px);margin-top:55px;grid-template-columns:1fr;row-gap:90px}
+  .work-large,.work-small,.work-wide,.work-medium,.work-offset,.work-large-right{grid-column:auto;margin-top:0}
+  .work-small{width:70%;margin-left:auto}
+  .work-offset{width:75%}
+  .section,footer{width:calc(100% - 30px)}
+  .books{grid-template-columns:repeat(2,1fr);gap:22px}
+  .about{grid-template-columns:1fr;gap:30px}
+}
