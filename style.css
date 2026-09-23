@@ -1,131 +1,379 @@
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:#fff;color:#111;font-family:"Times New Roman",Times,serif;font-size:16px;line-height:1.25}
-a{color:inherit;text-decoration:none}
-a:hover{text-decoration:underline}
+*{
+  box-sizing:border-box;
+}
 
-.site-header{position:sticky;top:0;z-index:20;width:100%;padding:18px 24px;display:flex;justify-content:space-between;align-items:baseline;background:rgba(255,255,255,.96)}
-.artist-name{font-size:16px}
-nav{display:flex;gap:20px;font-size:15px}
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:#fff;
+  color:#111;
+  font-family:"Times New Roman",Times,serif;
+  font-size:16px;
+  line-height:1.25;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+a:hover{
+  text-decoration:underline;
+}
+
+
+/* =====================================================
+   CABEÇALHO
+   ===================================================== */
+
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:20;
+  width:100%;
+  padding:18px 24px;
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  background:rgba(255,255,255,.96);
+}
+
+.artist-name{
+  font-size:16px;
+}
+
+nav{
+  display:flex;
+  gap:20px;
+  font-size:15px;
+}
+
+
+/* =====================================================
+   TRABALHOS
+   ===================================================== */
 
 .works{
   width:min(1240px,calc(100% - 48px));
   margin:110px auto 220px;
+
   display:grid;
+
   grid-template-columns:repeat(12,1fr);
+
   column-gap:42px;
   row-gap:150px;
+
   align-items:start;
 }
-.work{margin:0}
-.work img{display:block;width:100%;height:auto;max-height:82vh;object-fit:contain}
-.work figcaption{margin-top:10px;font-size:14px}
 
-.work-large{grid-column:1 / 8}
-.work-small{grid-column:10 / 13;margin-top:110px}
-.work-wide{grid-column:3 / 11}
-.work-medium{grid-column:1 / 6;margin-top:20px}
-.work-offset{grid-column:8 / 11;margin-top:170px}
-.work-large-right{grid-column:5 / 13}
+.work{
+  margin:0;
+}
+
+.work img{
+  display:block;
+  width:100%;
+  height:auto;
+  max-height:82vh;
+  object-fit:contain;
+}
+
+.work figcaption{
+  margin-top:10px;
+  font-size:14px;
+}
+
+
+/* posições */
+
+.work-large{
+  grid-column:1 / 8;
+}
+
+.work-small{
+  grid-column:10 / 13;
+  margin-top:110px;
+}
+
+.work-wide{
+  grid-column:3 / 11;
+}
+
+.work-medium{
+  grid-column:1 / 6;
+  margin-top:20px;
+}
+
+.work-offset{
+  grid-column:8 / 11;
+  margin-top:170px;
+}
+
+.work-large-right{
+  grid-column:5 / 13;
+}
+
+
+/* imagem clicável */
+
+.work-image{
+  display:block;
+  cursor:zoom-in;
+}
+
+.work-image:hover{
+  text-decoration:none;
+}
+
+.work-image img{
+  transition:opacity .2s ease;
+}
+
+.work-image:hover img{
+  opacity:.75;
+}
+
+
+/* =====================================================
+   VISUALIZAÇÃO AMPLIADA
+   ===================================================== */
+
+.lightbox{
+  position:fixed;
+  z-index:100;
+
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+
+  background:rgba(255,255,255,.98);
+
+  display:none;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:60px;
+}
+
+.lightbox:target{
+  display:flex;
+}
+
+.lightbox-content{
+  width:100%;
+  height:100%;
+
+  display:flex;
+  flex-direction:column;
+
+  align-items:center;
+  justify-content:center;
+}
+
+.lightbox-content img{
+  display:block;
+
+  max-width:92vw;
+  max-height:82vh;
+
+  width:auto;
+  height:auto;
+
+  object-fit:contain;
+}
+
+.lightbox-caption{
+  margin-top:14px;
+  font-size:14px;
+  text-align:center;
+}
+
+.lightbox-close{
+  position:absolute;
+
+  top:18px;
+  right:25px;
+
+  font-size:28px;
+  line-height:1;
+
+  text-decoration:none;
+
+  z-index:101;
+}
+
+.lightbox-close:hover{
+  text-decoration:none;
+}
+
+
+/* =====================================================
+   SEÇÕES
+   ===================================================== */
 
 .section{
   width:min(1240px,calc(100% - 48px));
   margin:0 auto 220px;
+
   border-top:1px solid #111;
+
   padding-top:18px;
 }
-.section h2{font-size:16px;font-weight:normal;margin:0 0 55px}
-.books{display:grid;grid-template-columns:repeat(4,1fr);gap:35px}
-.book-card img{display:block;width:100%;aspect-ratio:3/4;object-fit:cover;background:#eee}
-.book-card div{margin-top:10px;font-size:14px}
 
-.about{display:grid;grid-template-columns:1fr 1fr}
-.about p{margin:0 0 20px}
+.section h2{
+  font-size:16px;
+  font-weight:normal;
 
-footer{width:min(1240px,calc(100% - 48px));margin:auto;padding:20px 0 30px;border-top:1px solid #111;font-size:13px}
-
-.videos-section {
-  margin-bottom: 220px;
+  margin:0 0 55px;
 }
 
-.videos {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 120px 42px;
-  align-items: start;
+
+/* =====================================================
+   LIVROS
+   ===================================================== */
+
+.books{
+  display:grid;
+
+  grid-template-columns:repeat(4,1fr);
+
+  gap:35px;
 }
 
-.video-work {
-  margin: 0;
+.book-card img{
+  display:block;
+
+  width:100%;
+
+  aspect-ratio:3/4;
+
+  object-fit:cover;
+
+  background:#eee;
 }
 
-.video-work video {
-  display: block;
-  width: 100%;
-  height: auto;
-  background: #000;
+.book-card div{
+  margin-top:10px;
+  font-size:14px;
 }
 
-.video-work figcaption {
-  margin-top: 10px;
-  font-size: 14px;
+
+/* =====================================================
+   VÍDEOS
+   ===================================================== */
+
+.videos-section{
+  margin-bottom:220px;
 }
 
-/* VÍDEOS */
+.videos{
+  display:grid;
 
-.videos-section {
-  margin-bottom: 220px;
+  grid-template-columns:repeat(2,1fr);
+
+  gap:120px 42px;
+
+  align-items:start;
 }
 
-.videos {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 120px 42px;
-  align-items: start;
+.video-work{
+  margin:0;
 }
 
-.video-work {
-  margin: 0;
+.video-container{
+  position:relative;
+
+  width:100%;
+
+  aspect-ratio:16 / 9;
+
+  background:#000;
+
+  overflow:hidden;
 }
 
-.video-container {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: #000;
-  overflow: hidden;
+.video-container iframe{
+  position:absolute;
+
+  top:0;
+  left:0;
+
+  width:100%;
+  height:100%;
+
+  border:0;
 }
 
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
+.video-work figcaption{
+  margin-top:10px;
+
+  font-size:14px;
 }
 
-.video-work figcaption {
-  margin-top: 10px;
-  font-size: 14px;
+
+/* =====================================================
+   SOBRE
+   ===================================================== */
+
+.about{
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
 }
+
+.about p{
+  margin:0 0 20px;
+}
+
+
+/* =====================================================
+   RODAPÉ
+   ===================================================== */
+
+footer{
+  width:min(1240px,calc(100% - 48px));
+
+  margin:auto;
+
+  padding:20px 0 30px;
+
+  border-top:1px solid #111;
+
+  font-size:13px;
+}
+
+
+/* =====================================================
+   CELULAR
+   ===================================================== */
 
 @media(max-width:800px){
 
   .site-header{
-    padding:15px
+    padding:15px;
   }
 
   nav{
-    gap:12px
+    gap:12px;
   }
+
 
   .works{
     width:calc(100% - 30px);
+
     margin-top:55px;
+
     grid-template-columns:1fr;
-    row-gap:90px
+
+    row-gap:90px;
   }
+
 
   .work-large,
   .work-small,
@@ -134,35 +382,66 @@ footer{width:min(1240px,calc(100% - 48px));margin:auto;padding:20px 0 30px;borde
   .work-offset,
   .work-large-right{
     grid-column:auto;
-    margin-top:0
+
+    margin-top:0;
   }
+
 
   .work-small{
     width:70%;
-    margin-left:auto
+
+    margin-left:auto;
   }
 
+
   .work-offset{
-    width:75%
+    width:75%;
   }
+
 
   .section,
   footer{
-    width:calc(100% - 30px)
+    width:calc(100% - 30px);
   }
+
 
   .books{
     grid-template-columns:repeat(2,1fr);
-    gap:22px
+
+    gap:22px;
   }
+
 
   .about{
     grid-template-columns:1fr;
-    gap:30px
+
+    gap:30px;
   }
+
 
   .videos{
     grid-template-columns:1fr;
-    gap:80px
+
+    gap:80px;
   }
+
+
+  .lightbox{
+    padding:30px 15px;
+  }
+
+
+  .lightbox-content img{
+    max-width:94vw;
+    max-height:80vh;
+  }
+
+
+  .lightbox-close{
+    top:12px;
+    right:17px;
+
+    font-size:25px;
+  }
+
 }
