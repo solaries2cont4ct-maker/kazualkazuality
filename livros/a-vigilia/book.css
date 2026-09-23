@@ -1,21 +1,359 @@
-*{box-sizing:border-box}
-body{margin:0;background:#fff;color:#111;font-family:"Times New Roman",Times,serif}
-header{padding:18px 24px;display:flex;justify-content:space-between}
-.title{width:min(1100px,calc(100% - 48px));margin:35px auto 10px}
-.title h1{font-size:18px;font-weight:normal;margin:0}
-.title p{font-size:14px;margin:4px 0}
-#book-area{height:calc(100vh - 190px);display:flex;align-items:center;justify-content:center;padding:20px;perspective:2200px}
-#book{position:relative;width:min(86vw,1100px);height:min(68vh,760px);transform-style:preserve-3d}
-.spread{position:absolute;inset:0;display:flex;box-shadow:0 20px 45px #0002}
-.page{width:50%;height:100%;overflow:hidden;background:#f7f5ef}
-.page img{width:100%;height:100%;object-fit:contain}
-.left{box-shadow:inset -12px 0 20px #0001}.right{box-shadow:inset 12px 0 20px #0001}
-.turning{position:absolute;top:0;width:50%;height:100%;z-index:5;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.22,.61,.36,1)}
-.turning.next{right:0;transform-origin:left}.turning.prev{left:0;transform-origin:right}
-.face{position:absolute;inset:0;backface-visibility:hidden;background:#f7f5ef}
-.face img{width:100%;height:100%;object-fit:contain}.back{transform:rotateY(180deg)}
-.next.flipped{transform:rotateY(-180deg)}.prev.flipped{transform:rotateY(180deg)}
-.controls{display:flex;justify-content:center;align-items:center;gap:25px}
-.controls button{border:0;background:none;font:20px "Times New Roman";cursor:pointer}
-.controls button:disabled{opacity:.25}.help{text-align:center;font-size:12px;opacity:.45}
-@media(max-width:700px){#book{width:88vw;height:70vh}.page.left{display:none}.page.right{width:100%}.turning{width:100%}.title{width:calc(100% - 30px)}}
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:#fff;
+  color:#111;
+  font-family:"Times New Roman",Times,serif;
+}
+
+
+/* =====================================================
+   CABEÇALHO
+   ===================================================== */
+
+header{
+  padding:18px 24px;
+
+  display:flex;
+  justify-content:space-between;
+
+  font-size:16px;
+}
+
+
+/* =====================================================
+   TÍTULO
+   ===================================================== */
+
+.title{
+  width:min(1100px,calc(100% - 48px));
+
+  margin:35px auto 10px;
+}
+
+.title h1{
+  font-size:18px;
+  font-weight:normal;
+
+  margin:0;
+}
+
+.title p{
+  font-size:14px;
+
+  margin:4px 0;
+}
+
+
+/* =====================================================
+   ÁREA DO LIVRO
+   ===================================================== */
+
+#book-area{
+
+  /*
+    Espaço disponível para o livro.
+  */
+
+  height:calc(100vh - 190px);
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+
+  perspective:2200px;
+}
+
+
+/* =====================================================
+   LIVRO
+   ===================================================== */
+
+#book{
+
+  position:relative;
+
+  /*
+    O tamanho máximo continua sendo limitado pela tela,
+    mas agora a proporção do livro é determinada pelas
+    páginas através do conteúdo das imagens.
+  */
+
+  width:min(86vw,1100px);
+
+  /*
+    Altura máxima disponível.
+  */
+
+  height:min(72vh,760px);
+
+  transform-style:preserve-3d;
+}
+
+
+/* =====================================================
+   ABERTURA / SPREAD
+   ===================================================== */
+
+.spread{
+
+  position:absolute;
+
+  inset:0;
+
+  display:flex;
+
+  align-items:stretch;
+
+  box-shadow:0 20px 45px #0002;
+
+  transform-style:preserve-3d;
+}
+
+
+/* =====================================================
+   PÁGINAS
+   ===================================================== */
+
+.page{
+
+  width:50%;
+
+  height:100%;
+
+  overflow:hidden;
+
+  background:#f7f5ef;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+}
+
+
+/*
+   A imagem NÃO é mais obrigada a preencher
+   completamente a página.
+
+   Ela mantém sua proporção original.
+*/
+
+.page img{
+
+  display:block;
+
+  width:100%;
+
+  height:100%;
+
+  object-fit:contain;
+}
+
+
+/* sombras do centro do livro */
+
+.left{
+  box-shadow:inset -12px 0 20px #0001;
+}
+
+.right{
+  box-shadow:inset 12px 0 20px #0001;
+}
+
+
+/* =====================================================
+   ANIMAÇÃO DE VIRAR PÁGINA
+   ===================================================== */
+
+.turning{
+
+  position:absolute;
+
+  top:0;
+
+  width:50%;
+  height:100%;
+
+  z-index:5;
+
+  transform-style:preserve-3d;
+
+  transition:
+    transform .8s cubic-bezier(.22,.61,.36,1);
+}
+
+
+/* página virando para frente */
+
+.turning.next{
+
+  right:0;
+
+  transform-origin:left;
+}
+
+
+/* página voltando */
+
+.turning.prev{
+
+  left:0;
+
+  transform-origin:right;
+}
+
+
+/* =====================================================
+   FACES DA PÁGINA
+   ===================================================== */
+
+.face{
+
+  position:absolute;
+
+  inset:0;
+
+  backface-visibility:hidden;
+
+  background:#f7f5ef;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+}
+
+
+.face img{
+
+  display:block;
+
+  width:100%;
+  height:100%;
+
+  object-fit:contain;
+}
+
+
+.back{
+
+  transform:rotateY(180deg);
+}
+
+
+/* animações */
+
+.next.flipped{
+  transform:rotateY(-180deg);
+}
+
+.prev.flipped{
+  transform:rotateY(180deg);
+}
+
+
+/* =====================================================
+   CONTROLES
+   ===================================================== */
+
+.controls{
+
+  display:flex;
+
+  justify-content:center;
+  align-items:center;
+
+  gap:25px;
+}
+
+.controls button{
+
+  border:0;
+
+  background:none;
+
+  font:20px "Times New Roman";
+
+  cursor:pointer;
+}
+
+.controls button:disabled{
+  opacity:.25;
+}
+
+.help{
+
+  text-align:center;
+
+  font-size:12px;
+
+  opacity:.45;
+}
+
+
+/* =====================================================
+   RESPONSIVO
+   ===================================================== */
+
+@media(max-width:700px){
+
+  #book-area{
+
+    height:calc(100vh - 170px);
+
+    padding:15px;
+  }
+
+
+  /*
+    No celular mostramos uma página por vez.
+  */
+
+  #book{
+
+    width:88vw;
+
+    height:72vh;
+  }
+
+
+  .page.left{
+    display:none;
+  }
+
+
+  .page.right{
+
+    width:100%;
+  }
+
+
+  .turning{
+
+    width:100%;
+  }
+
+
+  .title{
+
+    width:calc(100% - 30px);
+  }
+
+
+  .page img{
+
+    max-width:100%;
+    max-height:100%;
+
+    object-fit:contain;
+  }
+
+}
